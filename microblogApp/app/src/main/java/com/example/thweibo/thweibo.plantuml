@@ -1,0 +1,566 @@
+@startuml
+
+title __THWEIBO's Class Diagram__\n
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.AddBlogActivity {
+        {static} - REQUEST_CODE_PICK_IMAGE_1 : int
+        {static} - REQUEST_CODE_PICK_IMAGE_2 : int
+        {static} - REQUEST_CODE_PICK_IMAGE_3 : int
+        {static} - REQUEST_CODE_PICK_VIDEO : int
+        {static} - TAG : String
+        - mAddBlogTextView : EditText
+        - mPic1Bitmap : Bitmap
+        - mPic1Id : String
+        - mPic1Uri : Uri
+        - mPic2Bitmap : Bitmap
+        - mPic2Id : String
+        - mPic2Uri : Uri
+        - mPic3Bitmap : Bitmap
+        - mPic3Id : String
+        - mPic3Uri : Uri
+        - mUploadPic1 : ImageButton
+        - mUploadPic2 : ImageButton
+        - mUploadPic3 : ImageButton
+        - mUploadVideo : ImageButton
+        - mVideoId : String
+        - mVideoUri : Uri
+        - mvideoPath : String
+        # onActivityResult()
+        # onCreate()
+        - getUsername()
+        - send()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.BlackListActivity {
+        {static} - TAG : String
+        - mRecyclerView : RecyclerView
+        - users : List<String>
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.BlackListActivity.BlackUserAdapter {
+        - mUsers : List<String>
+        + BlackUserAdapter()
+        + getItemCount()
+        + onBindViewHolder()
+        + onCreateViewHolder()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.BlackListActivity.BlackUserHolder {
+        - mAvatarImageView : ImageView
+        - mIndex : int
+        - mUsernameTextView : TextView
+        + BlackUserHolder()
+        + onClick()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.Comment {
+        - mBlogID : int
+        - mCommentID : int
+        - mCommentTime : String
+        - mContent : String
+        - mUsername : String
+        + Comment()
+        + getCommentTime()
+        + getContent()
+        + getUsername()
+        + setBlogId()
+        + setCommentId()
+        + setCommentTime()
+        + setContent()
+        + setUsername()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.CustomVideoView {
+        + CustomVideoView()
+        + CustomVideoView()
+        + CustomVideoView()
+        + onKeyDown()
+        + setOnPreparedListener()
+        # onMeasure()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.DMListActivity {
+        {static} - TAG : String
+        - mDMs : List<MyDM>
+        - mRecyclerView : RecyclerView
+        + onCreate()
+        + onStart()
+        - fetchDMs()
+        - setupAdapter()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.DMListActivity.DMAdapter {
+        - mdms : List<MyDM>
+        + DMAdapter()
+        + getItemCount()
+        + onBindViewHolder()
+        + onCreateViewHolder()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.DMListActivity.DMHolder {
+        - mAvatarImageView : ImageView
+        - mIndex : int
+        - mTitleTextView : TextView
+        - mUsernameTextView : TextView
+        + DMHolder()
+        + onClick()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.DMListActivity.FetchDMTask {
+        # doInBackground()
+        # onPostExecute()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.DetailActivity {
+        ~ mMediaController : MediaController
+        {static} - TAG : String
+        - mBuilder : Builder
+        - mCommentText : String
+        - mComments : List<Comment>
+        - mDetailCommentButton : Button
+        - mDetailCommentEditText : EditText
+        - mDetailDelete : Button
+        - mDetailLike : TextView
+        - mDetailMblogID : TextView
+        - mDetailText : TextView
+        - mDetailTime : TextView
+        - mPicArray : ImageView[]
+        - mRecyclerView : RecyclerView
+        - mRetweet : ImageView
+        - mSenderAvatarImageView : ImageView
+        - mThumb : ImageView
+        - mVideoView : VideoView
+        - playBtn : ImageButton
+        {static} - sBitmapVec : Vector<Bitmap>
+        {static} - sPicPathArray : String[]
+        - stopBtn : ImageButton
+        + deleteBlog()
+        # onCreate()
+        - delete()
+        - fetchComments()
+        - getBlogPic()
+        - getUsername()
+        - sendComment()
+        - setupAdapter()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.DetailActivity.CommentAdapter {
+        - commentList : List<Comment>
+        - mCommentAvatar : ImageView
+        - mUsername : String
+        + CommentAdapter()
+        + getItemCount()
+        + onBindViewHolder()
+        + onCreateViewHolder()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.DetailActivity.CommentHolder {
+        - mCommentContent : TextView
+        - mCommentMBlogID : TextView
+        - mCommentTime : TextView
+        - mIndex : int
+        + CommentHolder()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.DetailActivity.FetchCommentsTask {
+        # doInBackground()
+        # onPostExecute()
+        # onProgressUpdate()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.DirectMailActivity {
+        - TAG : String
+        - mContentEditText : EditText
+        - mTitleEditText : EditText
+        - mToUsername : String
+        - mUsernameEditText : EditText
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.HomeFragment {
+        {static} - TAG : String
+        - blogs : List<MyBlog>
+        - mRecyclerView : RecyclerView
+        - mRoot : View
+        + onCreateView()
+        + onStart()
+        - fetchblogs()
+        - setupAdapter()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.HomeFragment.BlogAdapter {
+        - myBlogs : List<MyBlog>
+        + BlogAdapter()
+        + getItemCount()
+        + onBindViewHolder()
+        + onCreateViewHolder()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.HomeFragment.BlogHolder {
+        - blog_text : TextView
+        - id : int
+        - mAvatarImageView : ImageView
+        - pub_time : TextView
+        - user_nickname : TextView
+        + BlogHolder()
+        + onClick()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.HomeFragment.FetchBlogsTask {
+        # doInBackground()
+        # onPostExecute()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.ImageProcess {
+        {static} + bitmapToString()
+        {static} + compressImage()
+        {static} + getBitmapFormUri()
+        {static} + stringToBitmap()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.LoginActivity {
+        {static} - TAG : String
+        - mAccount : EditText
+        - mAllID : ArrayList<String>
+        - mGoRegister : TextView
+        - mLoginButton : Button
+        - mPassword : EditText
+        - mSavePassword : CheckBox
+        # onCreate()
+        # onRestart()
+        # onStart()
+        # onStop()
+        - getAccount()
+        - getPassword()
+        - getSavePassword()
+        - initBlackList()
+        - initResource()
+        - initView()
+        - login()
+        - setAccount()
+        - setPassword()
+        - setSavePassword()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.MainActivity {
+        - mFragmentHome : Fragment
+        - mFragmentManager : FragmentManager
+        - mFragmentMe : Fragment
+        - mOnNavigationItemSelectedListener : OnNavigationItemSelectedListener
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.MeFragment {
+        {static} - REQUEST_CODE_PICK_IMAGE : int
+        {static} - TAG : String
+        - mAvatarImageView : ImageView
+        - mBlacklistButton : Button
+        - mChangeIconButton : Button
+        - mDMbutton : Button
+        - mImgUri : Uri
+        - mLogoutButton : Button
+        - mRootView : View
+        - mUsernameTextView : TextView
+        + onActivityResult()
+        + onCreate()
+        + onCreateView()
+        - getUsername()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.MyBlog {
+        {static} + CREATOR : Creator<MyBlog>
+        {static} - TAG : String
+        - mBlogID : int
+        - mContent : String
+        - mDatetime : String
+        - mImgPath : String
+        - mLike : String
+        - mUsername : String
+        - mVideoPath : String
+        + MyBlog()
+        + describeContents()
+        + getContent()
+        + getDatetime()
+        + getImgPath()
+        + getUsername()
+        + getWeiboId()
+        + getmLike()
+        + getmVideoPath()
+        + setContent()
+        + setDatetime()
+        + setImgPath()
+        + setUsername()
+        + setWeiboId()
+        + setmLike()
+        + setmVideoPath()
+        + toString()
+        + writeToParcel()
+        # MyBlog()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.MyDM {
+        {static} + CREATOR : Creator<MyDM>
+        - mContent : String
+        - mFromUsername : String
+        - mId : int
+        - mTitle : String
+        + MyDM()
+        + describeContents()
+        + getContent()
+        + getFromUsername()
+        + getId()
+        + getTitle()
+        + setContent()
+        + setFromUsername()
+        + setId()
+        + setTitle()
+        + writeToParcel()
+        # MyDM()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.MyHttpRequest {
+        {static} - TAG : String
+        + MyHttpRequest()
+        # sendHttpRequest()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.OtherMeActivity {
+        {static} - TAG : String
+        - mAccount : String
+        - mAvatarImageView : ImageView
+        - mBanButton : Button
+        - mDMButton : Button
+        - mGobackButton : Button
+        - mUsernameTextView : TextView
+        + onCreate()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.ReadDMActivity {
+        - mAvatarImageView : ImageView
+        - mContentTextView : TextView
+        - mFromUserTextView : TextView
+        - mTitleTextView : TextView
+        - mToolbar : Toolbar
+        # onCreate()
+        - deleteDM()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.RegisterActivity {
+        {static} - REQUEST_CODE_PICK_IMAGE : int
+        {static} - TAG : String
+        - mAvatarBitmap : Bitmap
+        - mImg : ImageView
+        - mImgUri : Uri
+        - mRegisterBtn : Button
+        - mSetAccount : EditText
+        - mSetPassword : EditText
+        - mSetPassword2 : EditText
+        - mUploadIcon : ImageView
+        # onActivityResult()
+        # onCreate()
+        - register()
+        - setAccount()
+        - setIconPath()
+        - setPassword()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.ServerConfigure {
+        {static} - TAG : String
+        {static} - mAccount : String
+        {static} - mIp : String
+        {static} - sAvatarBitmap : Bitmap
+        {static} - sAvatarMap : HashMap<String, Bitmap>
+        {static} - sBlackListSet : HashSet<String>
+        {static} - updateBlackList : String
+        {static} + addOtherAvatar()
+        {static} + addToBlackListSet()
+        {static} + getAccount()
+        {static} + getAllAvatar()
+        {static} + getAvatarURL()
+        {static} + getBlackList()
+        {static} + getBlackListArray()
+        {static} + getDeleteBlog()
+        {static} + getDeleteDM()
+        {static} + getDownloadAvatar()
+        {static} + getDownloadPic()
+        {static} + getFetchBlog()
+        {static} + getFetchComment()
+        {static} + getFetchDM()
+        {static} + getFetchLikes()
+        {static} + getIP()
+        {static} + getLike()
+        {static} + getLogin()
+        {static} + getMyAvatar()
+        {static} + getOtherAvatar()
+        {static} + getRegister()
+        {static} + getRetweet()
+        {static} + getSend()
+        {static} + getSendComment()
+        {static} + getSendDM()
+        {static} + getUpdateBlackListUrl()
+        {static} + getUploadAvatar()
+        {static} + getUploadPic()
+        {static} + getUploadVideo()
+        {static} + isInBlackList()
+        {static} + isUsernameValid()
+        {static} + removeFromBlackListSet()
+        {static} + setAccount()
+        {static} + setMyAvatar()
+        {static} + updateBlacklist()
+    }
+  }
+  
+
+  namespace com.example.thweibo {
+    class com.example.thweibo.UploadFile {
+        {static} - TAG : String
+        - mSrcPath : String
+        + uploadFile()
+        {static} + uriToPath()
+        ~ UploadFile()
+    }
+  }
+  
+
+  com.example.thweibo.AddBlogActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.thweibo.BlackListActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.thweibo.BlackListActivity +-down- com.example.thweibo.BlackListActivity.BlackUserAdapter
+  com.example.thweibo.BlackListActivity +-down- com.example.thweibo.BlackListActivity.BlackUserHolder
+  com.example.thweibo.BlackListActivity.BlackUserAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.thweibo.BlackListActivity.BlackUserHolder .up.|> android.view.View.OnClickListener
+  com.example.thweibo.BlackListActivity.BlackUserHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.example.thweibo.CustomVideoView -up-|> android.widget.VideoView
+  com.example.thweibo.DMListActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.thweibo.DMListActivity +-down- com.example.thweibo.DMListActivity.DMAdapter
+  com.example.thweibo.DMListActivity +-down- com.example.thweibo.DMListActivity.DMHolder
+  com.example.thweibo.DMListActivity +-down- com.example.thweibo.DMListActivity.FetchDMTask
+  com.example.thweibo.DMListActivity.DMAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.thweibo.DMListActivity.DMHolder .up.|> android.view.View.OnClickListener
+  com.example.thweibo.DMListActivity.DMHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.example.thweibo.DMListActivity.FetchDMTask -up-|> android.os.AsyncTask
+  com.example.thweibo.DetailActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.thweibo.DetailActivity o-- com.example.thweibo.MyBlog : mBlog
+  com.example.thweibo.DetailActivity +-down- com.example.thweibo.DetailActivity.CommentAdapter
+  com.example.thweibo.DetailActivity +-down- com.example.thweibo.DetailActivity.CommentHolder
+  com.example.thweibo.DetailActivity +-down- com.example.thweibo.DetailActivity.FetchCommentsTask
+  com.example.thweibo.DetailActivity.CommentAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.thweibo.DetailActivity.CommentHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.example.thweibo.DetailActivity.FetchCommentsTask -up-|> android.os.AsyncTask
+  com.example.thweibo.DirectMailActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.thweibo.HomeFragment -up-|> androidx.fragment.app.Fragment
+  com.example.thweibo.HomeFragment +-down- com.example.thweibo.HomeFragment.BlogAdapter
+  com.example.thweibo.HomeFragment +-down- com.example.thweibo.HomeFragment.BlogHolder
+  com.example.thweibo.HomeFragment +-down- com.example.thweibo.HomeFragment.FetchBlogsTask
+  com.example.thweibo.HomeFragment.BlogAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.thweibo.HomeFragment.BlogHolder .up.|> android.view.View.OnClickListener
+  com.example.thweibo.HomeFragment.BlogHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.example.thweibo.HomeFragment.FetchBlogsTask -up-|> android.os.AsyncTask
+  com.example.thweibo.LoginActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.thweibo.LoginActivity o-- com.example.thweibo.CustomVideoView : mVideoView
+  com.example.thweibo.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.thweibo.MeFragment -up-|> androidx.fragment.app.Fragment
+  com.example.thweibo.MyBlog .up.|> android.os.Parcelable
+  com.example.thweibo.MyDM .up.|> android.os.Parcelable
+  com.example.thweibo.OtherMeActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.thweibo.ReadDMActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.thweibo.ReadDMActivity o-- com.example.thweibo.MyDM : mDM
+  com.example.thweibo.RegisterActivity -up-|> androidx.appcompat.app.AppCompatActivity
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
